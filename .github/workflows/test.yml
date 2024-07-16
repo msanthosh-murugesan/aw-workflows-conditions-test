@@ -1,0 +1,28 @@
+name: Job name testing based on inputs condition
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Project Environment"
+        required: false
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - live
+
+      migrate:
+        description: "Migrate to default?"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    name: ${{ inputs.environment == 'live' && 'production' || 'staging' }}-${{ inputs.migrate && '' || 'non-default-' }}deploy
+    steps:
+      - name: Greetings
+        run: echo "Hello Success"
