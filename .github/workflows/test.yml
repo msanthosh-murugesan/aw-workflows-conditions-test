@@ -15,7 +15,6 @@ on:
       migrate:
         description: "Migrate to default?"
         required: false
-        default: false
         type: boolean
 
 jobs:
