@@ -22,7 +22,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    name: ${{ inputs.environment == 'live' && 'production' || 'staging' }}-${{ inputs.migrate && '' || 'non-default-' }}deploy
+    name: ${{ inputs.environment == 'live' && 'production' || 'staging' }}-${{ inputs.migrate && 'deploy' || 'non-default-deploy' }}
     steps:
       - name: Greetings
         run: echo "Hello Success"
