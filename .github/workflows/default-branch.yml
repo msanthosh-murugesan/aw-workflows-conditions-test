@@ -1,4 +1,4 @@
-name: Job name testing based on inputs condition
+name: Checking default branch for custom workflow run
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - main
-          
+
       environment:
         description: "Project Environment"
         required: false
