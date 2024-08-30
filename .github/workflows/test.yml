@@ -25,4 +25,13 @@ jobs:
     name: ${{ inputs.environment == 'live' && 'production' || 'staging' }}-${{ inputs.migrate && 'deploy' || 'non-default-deploy' }}
     steps:
       - name: Greetings
-        run: echo "Hello Success"
+        id: deployer-label
+        run: |
+          DEPLOYER=$(echo "$ACTOR" | tr '[:upper:]' '[:lower:]' | tr -cd 'a-z0-9_-')
+          echo "deployer=$DEPLOYER" >> "$GITHUB_OUTPUT"
+          echo "label=deployer=$DEPLOYER" >> "$GITHUB_OUTPUT"
+
+      - name: Test
+        run: |
+          echo ${{ steps.deployer-label.outputs.deployer }}
+          echo ${{ steps.deployer-label.outputs.label }}
