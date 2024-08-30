@@ -30,8 +30,12 @@ jobs:
           DEPLOYER=$(echo "$ACTOR" | tr '[:upper:]' '[:lower:]' | tr -cd 'a-z0-9_-')
           echo "deployer=$DEPLOYER" >> "$GITHUB_OUTPUT"
           echo "label=deployer=$DEPLOYER" >> "$GITHUB_OUTPUT"
+        shell: bash
+        env:
+          ACTOR: ${{ github.actor }}   
 
       - name: Test
+        shell: bash
         run: |
           echo "${{ steps.deployer-label.outputs.deployer }}"
           echo "${{ steps.deployer-label.outputs.label }}"
