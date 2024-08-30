@@ -33,5 +33,5 @@ jobs:
 
       - name: Test
         run: |
-          echo ${{ steps.deployer-label.outputs.deployer }}
-          echo ${{ steps.deployer-label.outputs.label }}
+          echo "${{ steps.deployer-label.outputs.deployer }}"
+          echo "${{ steps.deployer-label.outputs.label }}"
