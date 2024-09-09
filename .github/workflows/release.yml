@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  workflow_dispatch
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+  
+      - name: Create a Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          draft: false
+          tag_name: v1.5.0
+          release_name: Test release for actions
+          body: |
+            - Test release to test the actions
