@@ -13,5 +13,5 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
 
       - name: Adding conditio to test
-        if: github.event.pull_request.base_ref == 'main'
+        if: github.event.pull_request.base.ref == 'main'
         run: echo "Success"
