@@ -1,0 +1,10 @@
+name: anywhere-contacts-component CI
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+
+jobs:
+  playwright-ui-test:
+    uses: msanthosh-murugesan/react-node-cicd/.github/workflows/reusable-workflow.yml@master
+    secrets: inherit
