@@ -1,4 +1,4 @@
-name: anywhere-contacts-component CI
+name: Test CI
 
 on:
   pull_request:
