@@ -1,4 +1,4 @@
-name: Test CI Reusable workflow
+name: Test CI - Reusable workflow
 
 on:
   pull_request:
