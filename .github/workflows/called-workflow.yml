@@ -5,6 +5,6 @@ on:
     types: [ opened, synchronize ]
 
 jobs:
-  playwright-ui-test:
+  playwright-ui:
     uses: msanthosh-murugesan/label-test/.github/workflows/reusable.yml@october
     secrets: inherit
