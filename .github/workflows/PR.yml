@@ -2,7 +2,8 @@ name: Fetching commits
 
 on:
   pull_request:
-    types: [opened, synchronize, closed]
+      types: [opened, synchronize]
+  push:  
     
 jobs:
   commits:
