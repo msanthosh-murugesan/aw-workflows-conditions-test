@@ -1,9 +1,9 @@
 name: Fetching commits
 
 on:
-  - pull_request:
+  pull_request:
       types: [opened, synchronize]
-  - push:  
+  push:  
     
 jobs:
   commits:
