@@ -3,7 +3,7 @@ name: Fetching commits
 on:
   pull_request:
     branches: [main]
-    types: [closed, synchronize, opened, ready_for_review]
+    types: [closed, synchronize, opened, labeled, ready_for_review]
 
   push:
     
@@ -11,7 +11,7 @@ jobs:
   commits:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: ${{ github.event.action != 'closed' || github.event.pull_request.merged == true }}
+    if: github.event.action != 'labeled' && (github.event.action != 'closed' || github.event.pull_request.merged == true)
     steps:
       - name: Greetings
         run: echo "Hello Success"
@@ -30,3 +30,26 @@ jobs:
           commit_count=$(git rev-list --count "$base_sha..$head_sha")
           echo "Fetch depth is $commit_count"
           git fetch --depth="$commit_count"  
+
+  commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event.action == 'labeled'
+    steps:
+      - name: Greetings
+        run: echo "Hello Success"
+
+      - name: Checkout with minimal depth
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # Used to perform unshallow fetch for SonarQube and unit tests diff-tree
+      - name: Fetch range of commits
+        run: |
+          base_sha=${{ github.event.pull_request.base.sha }}
+          head_sha=${{ github.event.pull_request.head.sha }}
+          git fetch origin "$base_sha" "$head_sha"
+          commit_count=$(git rev-list --count "$base_sha..$head_sha")
+          echo "Fetch depth is $commit_count"
+          git fetch --depth="$commit_count"          
