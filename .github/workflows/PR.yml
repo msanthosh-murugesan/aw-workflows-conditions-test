@@ -2,13 +2,16 @@ name: Fetching commits
 
 on:
   pull_request:
-      types: [opened, synchronize]
-  push:  
+    branches: [main]
+    types: [closed, synchronize, opened, ready_for_review]
+
+  push:
     
 jobs:
   commits:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    if: ${{ github.event.action != 'closed' || github.event.pull_request.merged == true }}
     steps:
       - name: Greetings
         run: echo "Hello Success"
