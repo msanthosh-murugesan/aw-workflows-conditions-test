@@ -28,4 +28,4 @@ jobs:
     name: ${{ inputs.environment == 'live' && 'production' || 'staging' }}-${{ inputs.migrate && 'deploy' || 'non-default-deploy' }}
     steps:
       - name: Greetings
-        run: echo "Hello Success"
+        run: echo "Hello Success ${{ vars.TEST }}"
