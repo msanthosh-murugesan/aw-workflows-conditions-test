@@ -21,6 +21,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      name: santhosh
     timeout-minutes: 10
     name: ${{ inputs.environment == 'live' && 'production' || 'staging' }}-${{ inputs.migrate && 'deploy' || 'non-default-deploy' }}
     steps:
